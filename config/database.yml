@@ -1,0 +1,36 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DATABASE_USER") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+
+
+development:
+  <<: *default
+  database: neo_dict_development
+
+test:
+  <<: *default
+  database: neo_dict_test
+
+production:
+  primary: # &primary_production
+    <<: *default
+    database: neo_dict_production
+    username: neo_dict
+    password: <%= ENV["NEO_DICT_DATABASE_PASSWORD"] %>
+#  cache:
+#    <<: *primary_production
+#    database: neo_dict_production_cache
+#    migrations_paths: db/cache_migrate
+#  queue:
+#    <<: *primary_production
+#    database: neo_dict_production_queue
+#    migrations_paths: db/queue_migrate
+#  cable:
+#    <<: *primary_production
+#    database: neo_dict_production_cable
+#    migrations_paths: db/cable_migrate
