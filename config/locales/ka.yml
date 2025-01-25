@@ -1,1 +1,11 @@
 ka:
+  activerecord:
+    attributes:
+      user:
+        email: "ელ.ფოსტა"
+        password: "პაროლი"
+        password_confirmation: "გაიმეორეთ პაროლი"
+        remember_me: "დამიმახსოვრე"
+  shared:
+    are_you_sure: "დარწმუნებული ხართ?"
+    back: "უკან"
