@@ -4,8 +4,16 @@ ka:
       user:
         email: "ელ.ფოსტა"
         password: "პაროლი"
-        password_confirmation: "გაიმეორეთ პაროლი"
+        password_confirmation: "პაროლის დასტური"
         remember_me: "დამიმახსოვრე"
+    errors:
+      messages:
+        blank: 'ცარიელია'
+        too_short: 'ძალიან მოკლეა'
+      models:
+        user:
+          confirmation: 'არ ემთხვევა პირველ პაროლს.'
+
   shared:
     are_you_sure: "დარწმუნებული ხართ?"
     back: "უკან"

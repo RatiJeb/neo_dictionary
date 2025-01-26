@@ -1,29 +1,31 @@
-<h2><%= t('devise.registrations.sign_up') %></h2>
+<div class='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 bg-sky-200 rounded-xl drop-shadow-md border border-sky-500'>
+  <h1 class='text-xl text-center pb-6'><%= t('devise.registrations.sign_up') %></h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class='field'>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'my-2 w-full p-1 rounded-md drop-shadow-md' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= t('devise.registrations.characters_minimum', length: @minimum_password_length) %>)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class='field'>
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= t('devise.registrations.characters_minimum', length: @minimum_password_length) %>)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: 'new-password', class: 'my-2 w-full p-1 rounded-md drop-shadow-md' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class='field'>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'my-2 w-full p-1 rounded-md drop-shadow-md' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit t('devise.registrations.sign_up') %>
-  </div>
-<% end %>
+    <div class='actions'>
+      <%= f.submit t('devise.registrations.sign_up'), class: 'container py-2 px-4 bg-green-600 text-white rounded-md w-full mt-4' %>
+    </div>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render 'devise/shared/links' %>
+</div>
