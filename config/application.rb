@@ -16,7 +16,7 @@ module NeoDict
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.i18n.default_locale = :ka
-    config.i18n.available_locales = [:ka].freeze
+    config.i18n.available_locales = [ :ka ].freeze
 
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
