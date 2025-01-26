@@ -13,6 +13,9 @@
 # Ignore all text editor files.
 /.idea/*
 
+# Ignore local tool versions file
+.tool-versions
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
