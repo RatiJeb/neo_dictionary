@@ -1,0 +1,22 @@
+<div class="p-8 m-4 bg-blue-100 rounded-xl inline-block w-1/2">
+  <h1 class="text-blue-500 text-3xl"><%= @word.word.value %></h1>
+  <i class="text-green-500 text-m text-italic underline decoration-dotted"><%= @word.type.value %>, <%= @word.tags.pluck(:value).join(', ') %></i>
+  <div class="ml-8 mt-2">
+    <% @word.explanations.each do |exp| %>
+      <div class="my-2">
+        <p id="explanation"><%= exp.value %></p>
+        <ul id="examples" class="ml-8 mt-2 list-disc text-sky-500">
+          <% exp.examples.each do |examp| %>
+            <li><%= examp.value %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div id="etymology" class="mt-4">
+      <div class="text-white px-2 py-1 bg-gradient-to-r from-blue-500 w-full"><%= t('.etymology') %></div>
+      <div class="bg-sky-50 w-full rounded-b-xl pt-2 pb-4">
+        <p class="mx-8"><%= @word.etymology %></p>
+      </div>
+    </div>
+  </div>
+</div>

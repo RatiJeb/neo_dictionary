@@ -19,3 +19,6 @@ ka:
     back: "უკან"
   app:
     title: "ნეოლოგიზმების ლექსიკონი"
+  home:
+    index:
+      etymology: "ეტიმოლოგია"
