@@ -20,5 +20,5 @@ ka:
   app:
     title: "ნეოლოგიზმების ლექსიკონი"
   home:
-    index:
+    card:
       etymology: "ეტიმოლოგია"
