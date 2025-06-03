@@ -19,7 +19,7 @@ FROM base as build
 # Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential git libpq-dev libvips pkg-config && \
+    build-essential git libpq-dev libvips pkg-config libyaml-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Install application gems
