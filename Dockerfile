@@ -21,7 +21,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
 COPY . .
-RUN SECRET_KEY_BASE_DUMMY=1 DATABASE_URL=postgresql://user:pass@localhost:5432/dbname ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 DATABASE_URL=postgresql://user:pass@localhost:5432/dbname TEST_DATABASE_URL=postgresql://user:pass@localhost:5432/dbname ./bin/rails assets:precompile
 
 FROM base
 
