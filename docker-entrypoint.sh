@@ -1,5 +1,5 @@
 #!/bin/bash -e
 # create or migrate existing database
-./bin/rails db:prepare -e production
+RAILS_ENV=production ./bin/rails db:prepare
 
 exec "${@}"
