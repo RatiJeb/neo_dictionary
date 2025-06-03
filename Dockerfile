@@ -41,4 +41,5 @@ USER rails:rails
 
 ENTRYPOINT ["/rails/docker-entrypoint.sh"]
 EXPOSE 3001
-CMD ["./bin/rails", "server", "--environment=production"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "3001", "--environment=production"]
+
