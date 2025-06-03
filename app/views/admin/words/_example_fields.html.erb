@@ -1,0 +1,8 @@
+<%= example_form = ef.fields_for :examples, example, child_index: index do |exf| %>
+  <div data-example-form-target="wrapper" class="border p-2 rounded mb-2 bg-gray-50">
+    <%= exf.label :value, "მაგალითი" %>
+    <%= exf.rich_text_area :value %>
+    <%= exf.hidden_field :_destroy %>
+    <button type="button" data-action="click->example-form#removeExample" class="text-xs text-red-600 mt-1">მაგალითის წაშლა</button>
+  </div>
+<% end %>

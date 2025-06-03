@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Neo Dict" %></title>
+    <title><%= content_for(:title) || t('app.title') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -17,18 +17,37 @@
     <link rel="apple-touch-icon" href="/neo.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body class="bg-gray-100">
-  <nav class="px-8 py-4 flex items-center bg-sky-100">
-    <%= image_tag '/neo.png', class: 'h-24' %>
-    <p class="ml-8 text-3xl text-blue-500">ნეოლოგიზმების ლექსიკონი</p>
-  </nav>
+    <nav class="px-8 py-4 flex items-center justify-between bg-[#e0ecf9]">
+      <div class="flex items-center">
+        <%= image_tag '/neo.png', class: 'h-24' %>
+        <%= link_to t('app.title'), root_path(locale: I18n.locale), class: "ml-8 text-3xl text-neo-dark" %>
+      </div>
+      <%= link_to url_for(params.as_json.merge(locale: (I18n.available_locales - [I18n.locale]).first)), class: "text-neo-dark", data: { turbo: false } do %>
+        <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2", width: 32, height: 32 %>
+      <% end %>
+    </nav>
     <main>
       <%= yield %>
     </main>
+    <footer class="w-full bg-neo mt-8 py-6 flex flex-col">
+      <div class="px-6 flex justify-center">
+        <%= link_to 'https://lexicography.iliauni.edu.ge/', class: 'px-6' do %>
+          <%= image_tag 'ISU-lexicography.png', alt: 'Ilia State University Lexicography Logo', class: 'h-16' %>
+        <% end %>
+        <%= link_to 'https://iliauni.edu.ge/' , class: 'px-6' do %>
+          <%= image_tag 'ISU.png', alt: 'Ilia State University Logo', class: 'h-16' %>
+        <% end %>
+        <%= link_to 'https://unilab.iliauni.edu.ge/' , class: 'px-6' do %>
+          <%= image_tag 'unilab.png', alt: 'unilab logo', class: 'h-16' %>
+        <% end %>
+      </div>
+      <p class="text-center text-sm mt-4">© <%= Time.zone.today.year %></p>
+    </footer>
   </body>
 </html>

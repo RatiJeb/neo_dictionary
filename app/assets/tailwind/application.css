@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@config '../../../config/tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+.btn-primary {
+  @apply text-white bg-neo-dark hover:bg-neo-dark-hover focus:ring-4 focus:outline-none focus:ring-neo font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center
+}
+
+.pagy {
+  @apply flex space-x-1 font-semibold text-sm text-white;
+  a:not(.gap) {
+    @apply block rounded-lg px-3 py-1 bg-neo text-neo-dark;
+    &:hover {
+      @apply bg-neo-dark text-white;
+    }
+    &:not([href]) {
+      @apply text-neo-dark bg-neo cursor-default;
+    }
+    &.current {
+      @apply text-white bg-neo-dark;
+    }
+  }
+  label {
+    @apply inline-block whitespace-nowrap bg-neo rounded-lg px-3 py-0.5;
+    input {
+      @apply bg-neo border-none rounded-md;
+    }
+  }
+}

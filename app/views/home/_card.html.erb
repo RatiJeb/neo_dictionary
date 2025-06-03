@@ -1,21 +1,54 @@
-<div class="p-8 m-4 bg-sky-100 rounded-xl inline-block w-1/2">
-  <h1 class="text-blue-500 text-3xl"><%= @word.word.value %></h1>
-  <i class="text-green-500 text-m text-italic underline decoration-dotted"><%= @word.type.value %>, <%= @word.tags.pluck(:value).join(', ') %></i>
-  <div class="ml-8 mt-2">
-    <% @word.explanations.each do |exp| %>
-      <div class="my-2">
-        <p id="explanation"><%= exp.value %></p>
-        <ul id="examples" class="ml-8 mt-2 list-disc text-sky-500">
-          <% exp.examples.each do |examp| %>
-            <li><%= examp.value %></li>
-          <% end %>
-        </ul>
+<div class="p-8 m-4 bg-neo rounded-xl inline-block w-1/2 text-left">
+  <div class="flex justify-between">
+    <div class="flex border border-2 border-neo-dark gap-4 rounded rounded-2xl p-3">
+      <div>
+        <p class="font-nino text-neo-dark text-3xl"><%= word.word %></p>
+        <p class="-mt-2 text-neo-dark text-lg"><%= word.transliteration %></p>
       </div>
+      <i class="text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"><%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
+    </div>
+    <p class="text-neo-dark text-2xl mr-10"><%= word.english_translation %></p>
+  </div>
+  <i class="ml-8 text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.field_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"><%= word.field_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
+  <i class="ml-1 text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.stylistic_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"> <%= word.stylistic_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
+  <div class="ml-8 mt-2">
+    <% if word.explanations.size > 1 %>
+      <ol class="list-decimal">
+        <% word.explanations.each do |exp| %>
+          <li class="my-2">
+            <p id="explanation"><%= exp.value %></p>
+            <ul id="examples" class="ml-8 mt-2 list-disc text-neo-dark">
+              <% exp.examples.each do |examp| %>
+                <li><%= examp.value %></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ol>
+    <% else %>
+      <% word.explanations.each do |exp| %>
+        <div class="my-2">
+          <p id="explanation"><%= exp.value %></p>
+          <ul id="examples" class="ml-8 mt-2 list-disc text-neo-dark">
+            <% exp.examples.each do |examp| %>
+              <li><%= examp.value %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
-    <div id="etymology" class="mt-4">
-      <div class="text-white px-2 py-1 bg-gradient-to-r from-blue-500 w-full"><%= t('.etymology') %></div>
-      <div class="bg-sky-50 w-full rounded-b-xl pt-2 pb-4">
-        <p class="mx-8"><%= @word.etymology %></p>
+    <div id="etymology" data-controller="chevron-toggle" class="mt-4">
+      <button data-action="click->chevron-toggle#toggle" class="text-white px-2 py-1 bg-gradient-to-r from-neo-dark w-full flex items-center justify-left gap-2">
+        <%= image_tag(
+              "chevron-right-light.svg",
+              class: "w-4 h-4 inline",
+              data: { chevron_toggle_target: "arrow", down_src: asset_path("chevron-down-light.svg"), right_src: asset_path("chevron-right-light.svg") },
+              alt: "dropdown arrow"
+            ) %>
+        <%= t('home.card.etymology') %>
+      </button>
+      <div data-chevron-toggle-target="content" class="bg-neo-light w-full rounded-b-xl pt-2 pb-4 px-8 hidden [&_a]:text-blue-600 [&_a:hover]:underline">
+        <p><%= word.etymology %></p>
       </div>
     </div>
   </div>

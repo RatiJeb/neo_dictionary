@@ -1,0 +1,35 @@
+<div id="words-section" class="mx-6 mt-4">
+  <div class="flex items-center justify-between">
+    <div>
+      <%= link_to t('admin.words.new_button'), new_admin_word_path, class: "btn-primary" %>
+      <%= link_to t('admin.words.invite_user_button'), new_admin_invitation_path, class: "btn-primary" %>
+    </div>
+    <%= form_with url: admin_root_path, method: :get do |f| %>
+      <%= f.text_field :search, value: params[:search], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= f.submit "ძებნა", class: "btn-primary" %>
+    <% end %>
+  </div>
+  <table class="mt-4">
+  <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500">სიტყვა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">შენიშვნა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">მოქმედება</td>
+    </tr>
+  </thead>
+    <tbody>
+      <% @words.each do |word| %>
+        <tr>
+          <td class="border border-2 px-4 py-2"><%= word.word %></td>
+          <td class="border border-2 px-4 py-2"><%= word.note %></td>
+          <td class="border border-2 px-4 py-2">
+            <div class="flex gap-1 items-center">
+              <%= link_to 'რედაქტირება', edit_admin_word_path(word), class: "text-[#555] hover:text-black bg-neo p-2 rounded rounded-lg" %>
+              <%= button_to 'წაშლა', admin_word_path(word), method: :delete, class: "text-[#555] hover:text-black bg-gray-300 p-2 rounded rounded-lg" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

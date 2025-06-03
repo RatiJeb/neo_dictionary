@@ -1,41 +1,10 @@
-require 'ostruct'
-
 class HomeController < ApplicationController
   def index
-    @word = OpenStruct.new(
-      {
-        word: OpenStruct.new({ id: 1, value: "ზონდერი" }),
-        type: OpenStruct.new({ id: 1, value: "არსებ. სახ." }),
-        tags: [OpenStruct.new({ id: 1, value: "კიცხვ." })],
-        explanations: [
-          OpenStruct.new({
-                           id: 1,
-                           value: "პოლიტიკური ჯგუფის მიერ დაქირავებული ბანდფორმების წევრი, რომელსაც პოლიტიკურ მოწინააღმდეგებზე ანგარიშწორებისთვის იყენებენ;",
-                           examples: [
-                             OpenStruct.new({
-                                              id: 1,
-                                              value: "მას სადარბაზოსთან დახვდა პირბადიანი სპორტულად ჩაცმული ზონდერი;"
-                                            }),
-                             OpenStruct.new({
-                                              id: 2,
-                                              value: "ზონდერჯგუფები;"
-                                            }),
-                             OpenStruct.new({
-                                              id: 3,
-                                              value: "ზონდერბრიგადები;"
-                                            }),
-                             OpenStruct.new({
-                                              id: 4,
-                                              value: "ზონდერკრიმინალები;"
-                                            }),
-                             OpenStruct.new({
-                                              id: 5,
-                                              value: "ზონდერმკვლელები;"
-                                            })
-                           ]
-                         })
-        ],
-        etymology: "ნასესხობა გერმანული ენიდან: SS-Sonderkommandos (\"სპეციალური ქვედანაყოფი\"). სიტყვა უკავშირდება მეორე მსოფლიო ომის დროს გერმანელების მიერ შექმნილ სპეციალურ სადამსჯელო რაზმებს."
-      })
+    @words = Word.includes(:field_qualification, :grammar_qualification, :stylistic_qualification, :rich_text_etymology, explanations: [ :rich_text_value, examples: :rich_text_value ]).left_joins(:rich_text_etymology, explanations: [ :rich_text_value, examples: :rich_text_value ]).distinct
+    @words = @words.where("word ILIKE :search OR transliteration ILIKE :search OR english_translation ILIKE :search OR (action_text_rich_texts.name IN ('etymology', 'value') AND action_text_rich_texts.body ILIKE :search)", search: "%#{params[:search]}%") if params[:search].present?
+    @words = @words.where("word ILIKE ?", "#{params[:letter]}%") if params[:letter].present?
+    @words = @words.order(params[:order] => params[:order] == "created_at" ? :desc : :asc) if params[:order].present?
+
+    @pagy, @records = pagy(@words)
   end
 end

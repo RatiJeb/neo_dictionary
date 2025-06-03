@@ -1,0 +1,41 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        remember_me: "Remember me"
+    errors:
+      messages:
+        blank: 'Empty'
+        too_short: 'Too Short'
+      models:
+        user:
+          confirmation: "Doesn't match with password."
+
+  shared:
+    are_you_sure: "are you sure?"
+    back: "back"
+  app:
+    title: "Dictionary of Georgian Neologisms"
+  home:
+    card:
+      etymology: "Etymology"
+    index:
+      search: "Search"
+      order: "Sort by:"
+  admin:
+    title: "Dictionary of Georgian Neologisms - Admin"
+    words:
+      new_button: "Add new word"
+      submit: "Submit"
+      create_notice: "Word was added to the database successfully."
+      add_explanation: "add explanation"
+      update_notice: "Word update was successful"
+      delete_notice: "word deletion was successful"
+      delete_error: "An unexpected error occurred during deleting the word."
+      invite_user_button: "Invite new user"
+    invitations:
+      new:
+        email: "Email"

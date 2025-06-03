@@ -1,0 +1,28 @@
+<%= explanation_form = f.fields_for :explanations, explanation, child_index: index do |ef| %>
+  <div data-controller="example-form" data-explanation-form-target="wrapper" class="p-4 border rounded space-y-2">
+    <%= ef.label :value, "განმარტება" %>
+    <%= ef.rich_text_area :value %>
+
+    <div>
+      <div data-example-form-target="exampleContainer">
+        <% explanation.examples.each_with_index do |example, j| %>
+          <%= render "example_fields", ef: ef, example: example, index: j %>
+        <% end %>
+      </div>
+    </div>
+
+    <button type="button" data-action="example-form#addExample" class="text-sm text-green-600 ml-4">+ მაგალითის
+      დამატება
+    </button>
+    <button type="button" data-action="explanation-form#removeExplanation" class="text-sm text-red-600 ml-2">განმარტების
+      წაშლა
+    </button>
+
+    <%= ef.hidden_field :_destroy %>
+
+    <!-- Example template -->
+    <template data-example-form-target="exampleTemplate">
+      <%= render "example_fields", ef: ef, example: explanation.examples.new, index: "NEW_EXAMPLE_RECORD" %>
+    </template>
+  </div>
+<% end %>

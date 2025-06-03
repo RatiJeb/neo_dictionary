@@ -43,12 +43,16 @@ gem "thruster", require: false
 
 # gem for authentication [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
+gem "devise_invitable", "~> 2.0"
 
 # dotenv
 gem "dotenv-rails", "~> 3.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+
+# pagination
+gem "pagy", "~> 9.3.4"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]

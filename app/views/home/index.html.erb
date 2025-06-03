@@ -1,1 +1,40 @@
-<%= render partial: 'home/card' %>
+<div class="flex justify-end gap-10 mt-3 mr-7">
+  <div class="flex justify-between mt-2 w-2/3">
+    <% ALPHABET_LETTERS.each do |letter| %>
+      <%= link_to letter, root_path(locale: I18n.locale, letter:), class: 'inline-block' %>
+    <% end %>
+  </div>
+  <%= form_with url: root_path(locale: I18n.locale), method: :get, local: true do |f| %>
+    <div data-controller="chevron-toggle">
+      <input type="hidden" id="advanced" name="advanced" autocomplete="off" value="<%= params[:advanced].to_s == "true" %>" data-chevron-toggle-target="parameter">
+      <div id="search-container" class="flex items-center gap-2">
+        <div data-action="click->chevron-toggle#toggle" class="inline mr-1">
+          <%= image_tag(
+                "chevron-right-dark.svg",
+                class: "w-5 h-5 inline",
+                data: {
+                  chevron_toggle_target: "arrow",
+                  down_src: asset_path("chevron-down-dark.svg"),
+                  right_src: asset_path("chevron-right-dark.svg")
+                },
+                alt: "dropdown arrow"
+              ) %>
+        </div>
+        <%= f.text_field :search, value: params[:search], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= f.submit t(".search"), class: "btn-primary" %>
+      </div>
+      <div data-chevron-toggle-target="content" class="mt-2<%= ' hidden' unless params[:advanced].to_s == "true" %>">
+        <%= f.label :order, t('.order') %>
+        <%= f.select :order, SortOptions.all.pluck(I18n.locale, :value), { selected: params[:order] }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="text-center">
+  <% @records.each do |word| %>
+    <%= render partial: 'home/card', locals: { word: } %>
+  <% end %>
+  <div class="flex mt-4 justify-center">
+    <%= pagy_custom_nav(@pagy) %>
+  </div>
+</div>

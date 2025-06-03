@@ -18,7 +18,22 @@ ka:
     are_you_sure: "დარწმუნებული ხართ?"
     back: "უკან"
   app:
-    title: "ნეოლოგიზმების ლექსიკონი"
+    title: "ქართული ნეოლოგიზმების ლექსიკონი"
   home:
     card:
       etymology: "ეტიმოლოგია"
+    index:
+      search: "ძებნა"
+      order: "სორტირება:"
+  admin:
+    title: "ქართული ნეოლოგიზმების ლექსიკონი - სამართავი პანელი"
+    words:
+      new_button: "ახალი სიტყვის დამატება"
+      submit: "დამატება"
+      create_notice: "სიტყვა წარმატებით დაემატა მონაცემთა ბაზაში."
+      add_explanation: "განმარტების დამატება"
+      update_notice: "სიტყვა განახლდა წარმატებით"
+      invite_user_button: "მომხმარებლის მოწვევა"
+    invitations:
+      new:
+        email: "ელ. ფოსტა"

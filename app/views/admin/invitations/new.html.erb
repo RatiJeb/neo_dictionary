@@ -1,0 +1,15 @@
+<div class="p-10">
+<h1 class="mb-5 text-xl font-bold"><%= t(".invite_user") %></h1>
+
+<%= form_with url: admin_invitations_path, local: true do |f| %>
+  <div class="flex gap-2">
+    <%= f.label t(".email") %>
+    <%= f.email_field :email, required: true, class: "ring-neo-dark ring-2 rounded" %>
+  </div>
+
+  <div class="flex gap-2 mt-5">
+    <%= link_to t("shared.back"), admin_root_path, class: "text-black bg-neo hover:bg-neo-hover focus:ring-4 focus:outline-none focus:ring-neo font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
+    <%= f.submit t(".send_invitation"), class: "btn-primary" %>
+  </div>
+<% end %>
+</div>
