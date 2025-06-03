@@ -20,7 +20,6 @@ production:
   primary: # &primary_production
     <<: *default
     database: neo_dict_production
-    username: neo_dict
     password: <%= ENV["NEO_DICT_DATABASE_PASSWORD"] %>
 #  cache:
 #    <<: *primary_production
