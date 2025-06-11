@@ -19,7 +19,7 @@
             <p id="explanation"><%= exp.value %></p>
             <ul id="examples" class="ml-8 mt-2 list-disc text-neo-dark">
               <% exp.examples.each do |examp| %>
-                <li><%= examp.value %></li>
+                <li><%= highlight_qualifications(examp.value.body.to_html, @short_names_map) %></li>
               <% end %>
             </ul>
           </li>
@@ -31,7 +31,7 @@
           <p id="explanation"><%= exp.value %></p>
           <ul id="examples" class="ml-8 mt-2 list-disc text-neo-dark">
             <% exp.examples.each do |examp| %>
-              <li><%= examp.value %></li>
+              <li><%= highlight_qualifications(examp.value.body.to_html, @short_names_map) %></li>
             <% end %>
           </ul>
         </div>
@@ -48,7 +48,7 @@
         <%= t('home.card.etymology') %>
       </button>
       <div data-chevron-toggle-target="content" class="bg-neo-light w-full rounded-b-xl pt-2 pb-4 px-8 hidden [&_a]:text-blue-600 [&_a:hover]:underline">
-        <p><%= word.etymology %></p>
+        <p><%= highlight_qualifications(word.etymology.body.to_html, @short_names_map) %></p>
       </div>
     </div>
   </div>

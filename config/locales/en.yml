@@ -35,7 +35,16 @@ en:
       update_notice: "Word update was successful"
       delete_notice: "word deletion was successful"
       delete_error: "An unexpected error occurred during deleting the word."
-      invite_user_button: "Invite new user"
     invitations:
       new:
         email: "Email"
+    other_qualifications:
+      create_notice: "Qualification was successfully created!"
+      update_notice: "Qualification was successfully updated!"
+      delete_notice: "Qualification was successfully deleted!"
+      delete_error: "An unexpected error occurred during deleting the Qualification."
+      new_button: "Add new qualification"
+    navbar:
+      invite_user: "Invite new user"
+      home: "Home"
+      other_qualifications: "other qualifications"

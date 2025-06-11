@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       root to: "words#index"
       resources :invitations, only: [ :new, :create ]
       resources :words
+      resources :other_qualifications
     end
   end
 end

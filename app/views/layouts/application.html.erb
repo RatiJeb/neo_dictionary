@@ -22,7 +22,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 flex flex-col h-screen">
     <nav class="px-8 py-4 flex items-center justify-between bg-[#e0ecf9]">
       <div class="flex items-center">
         <%= image_tag '/neo.png', class: 'h-24' %>
@@ -32,7 +32,7 @@
         <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2", width: 32, height: 32 %>
       <% end %>
     </nav>
-    <main>
+    <main class="flex-1">
       <%= yield %>
     </main>
     <footer class="w-full bg-neo mt-8 py-6 flex flex-col">
@@ -45,6 +45,9 @@
         <% end %>
         <%= link_to 'https://unilab.iliauni.edu.ge/' , class: 'px-6' do %>
           <%= image_tag 'unilab.png', alt: 'unilab logo', class: 'h-16' %>
+        <% end %>
+        <%= link_to 'https://www.rustaveli.org.ge/' , class: 'px-6' do %>
+          <%= image_tag 'rustaveli-logo.png', alt: 'rustaveli logo', class: 'h-16' %>
         <% end %>
       </div>
       <p class="text-center text-sm mt-4">© <%= Time.zone.today.year %></p>

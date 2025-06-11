@@ -29,11 +29,21 @@ ka:
     title: "ქართული ნეოლოგიზმების ლექსიკონი - სამართავი პანელი"
     words:
       new_button: "ახალი სიტყვის დამატება"
-      submit: "დამატება"
+      submit: "შენახვა"
       create_notice: "სიტყვა წარმატებით დაემატა მონაცემთა ბაზაში."
       add_explanation: "განმარტების დამატება"
       update_notice: "სიტყვა განახლდა წარმატებით"
-      invite_user_button: "მომხმარებლის მოწვევა"
+      delete_notice: "სიტყვა წარმატებით წაიშალა!"
+      delete_error: "სიტყვის წაშლისას წარმოიშვა მოულოდნელი ხარვეზი!"
     invitations:
       new:
         email: "ელ. ფოსტა"
+    other_qualifications:
+      create_notice: "კვალიფიკაცია წარმატებით შეიქმნა!"
+      update_notice: "კვალიფიკაცია წარმატებით განახლდა!"
+      delete_notice: "კვალიფიკაცია წარმატებით წაიშალა!"
+      new_button: "ახალი კვალიფიკაციის დამატება"
+    navbar:
+      invite_user: "მომხმარებლის მოწვევა"
+      home: "მთავარი"
+      other_qualifications: "სხვა კვალიფიკაციები"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_03_065011) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_11_043944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -81,6 +81,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_065011) do
     t.string "en_short_name"
     t.index ["name"], name: "index_grammar_qualifications_on_name", unique: true
     t.index ["short_name"], name: "index_grammar_qualifications_on_short_name", unique: true
+  end
+
+  create_table "other_qualifications", force: :cascade do |t|
+    t.string "short_name", null: false
+    t.string "name", null: false
+    t.string "en_name"
+    t.string "en_short_name"
+    t.index ["name"], name: "index_other_qualifications_on_name", unique: true
+    t.index ["short_name"], name: "index_other_qualifications_on_short_name", unique: true
   end
 
   create_table "stylistic_qualifications", force: :cascade do |t|

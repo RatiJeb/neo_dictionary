@@ -54,6 +54,9 @@ gem "image_processing", "~> 1.2"
 # pagination
 gem "pagy", "~> 9.3.4"
 
+# html parser
+gem "nokogiri"
+
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -69,4 +72,5 @@ group :development do
   gem "web-console"
   gem "bullet"
   gem "bundle-audit"
+  gem "annotaterb"
 end

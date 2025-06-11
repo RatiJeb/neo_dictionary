@@ -23,23 +23,33 @@
   </head>
 
   <body class="bg-gray-100">
-  <nav class="px-8 py-4 flex items-center bg-[#e0ecf9]">
-    <%= image_tag '/neo.png', class: 'h-24' %>
-    <%= link_to t('admin.title'), admin_root_path, class: "ml-8 text-3xl" %>
-  </nav>
-  <% if flash[:notice] %>
-    <div class="w-full p-2 bg-green-200 text-center">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
+    <nav class="px-8 py-4 flex items-center justify-between bg-[#e0ecf9]">
+      <div class="flex items-center">
+        <%= image_tag '/neo.png', class: 'h-24' %>
+        <%= link_to t('admin.title'), admin_root_path, class: "ml-8 text-3xl text-neo-dark" %>
+      </div>
+      <div class="flex items-center">
+        <%= link_to t('admin.navbar.home'), admin_root_path, class: "ml-8 text-neo-dark" %>
+        <%= link_to t('admin.navbar.invite_user'), new_admin_invitation_path, class: "ml-8 text-neo-dark" %>
+        <%= link_to t('admin.navbar.other_qualifications'), admin_other_qualifications_path, class: "ml-8 text-neo-dark" %>
+        <%= link_to url_for(params.as_json.merge(locale: (I18n.available_locales - [I18n.locale]).first)), class: "ml-8 text-neo-dark", data: { turbo: false } do %>
+          <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2", width: 32, height: 32 %>
+        <% end %>
+      </div>
+    </nav>
+    <% if flash[:notice] %>
+      <div class="w-full p-2 bg-green-200 text-center">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
-  <% if flash[:alert] %>
-    <div class="w-full p-2 bg-red-200 text-center">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
+    <% if flash[:alert] %>
+      <div class="w-full p-2 bg-red-200 text-center">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
-  <main>
+    <main>
       <%= yield %>
     </main>
   </body>
