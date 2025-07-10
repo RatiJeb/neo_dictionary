@@ -21,7 +21,7 @@
       <ol class="list-decimal">
         <% word.explanations.each do |exp| %>
           <li class="my-2">
-            <p id="explanation"><%= exp.value %></p>
+            <p id="explanation"><%= highlight_qualifications(exp.value.body.to_html, @short_names_map) %></p>
             <ul id="examples" class="ml-8 mt-2 list-disc text-neo-dark">
               <% exp.examples.each do |examp| %>
                 <li><%= highlight_qualifications(examp.value.body.to_html, @short_names_map) %></li>
