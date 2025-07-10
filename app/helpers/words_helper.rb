@@ -9,13 +9,13 @@ module WordsHelper
 
       text = node.content.dup
 
-      short_names_map.each do |short, full|
+      short_names_map.each do |short, hash|
         regex = /(?<=\b)#{Regexp.escape(short)}(?=\s)/
 
-        text.gsub!(regex) do |match|
+        text.gsub!(regex) do
           <<~HTML.chomp
-            <i class="text-green-700 text-m italic underline decoration-dotted" title="#{ERB::Util.h(full)}">
-              #{ERB::Util.h(match)}
+            <i class="text-green-700 text-m italic underline decoration-dotted" title="#{ERB::Util.h(hash[:full])}">
+              #{ERB::Util.h(hash[:short])}
             </i>
           HTML
         end

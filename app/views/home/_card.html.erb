@@ -1,13 +1,19 @@
 <div class="p-8 m-4 bg-neo rounded-xl inline-block w-1/2 text-left">
   <div class="flex justify-between">
-    <div class="flex border border-2 border-neo-dark gap-4 rounded rounded-2xl p-3">
+    <div class="flex border border-2 border-neo-dark gap-4 rounded rounded-2xl p-3 max-w-2/3">
       <div>
-        <p class="font-nino text-neo-dark text-3xl"><%= word.word %></p>
-        <p class="-mt-2 text-neo-dark text-lg"><%= word.transliteration %></p>
+        <% match = word.word.match(/^(.*?)(\([^)]+\))(.*)$/) %>
+        <% if match %>
+          <p class="font-nino text-neo-dark text-3xl"><%= (match[1].to_s + match[3].to_s).strip %></p>
+          <p class="font-nino text-neo-dark text-xl"><%= match[2] %></p>
+        <% else %>
+          <p class="font-nino text-neo-dark text-3xl"><%= word.word %></p>
+        <% end %>
+        <p class="text-neo-dark text-lg"><%= word.transliteration %></p>
       </div>
       <i class="text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"><%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
     </div>
-    <p class="text-neo-dark text-2xl mr-10"><%= word.english_translation %></p>
+    <p class="text-neo-dark text-2xl text-right pl-10 pr-5"><%= word.english_translation %></p>
   </div>
   <i class="ml-8 text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.field_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"><%= word.field_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
   <i class="ml-1 text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.stylistic_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"> <%= word.stylistic_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>

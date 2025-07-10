@@ -23,9 +23,9 @@ class HomeController < ApplicationController
       model.all.each do |q|
         full_name = locale == :en ? q.en_name : q.name
 
-        [q.short_name, q.en_short_name].each do |short|
+        [ q.short_name, q.en_short_name ].each do |short|
           next if short.blank?
-          hash[short.strip] = full_name
+          hash[short.strip] = { short: locale == :en ? q.en_short_name : q.short_name, full: full_name }
         end
       end
     end
