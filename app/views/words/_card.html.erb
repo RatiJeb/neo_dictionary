@@ -14,7 +14,7 @@
         </div>
         <i class="text-green-700 text-m text-italic underline decoration-dotted" title="<%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }name") %>"><%= word.grammar_qualification&.send("#{ "en_" if I18n.locale == :en }short_name") %></i>
       </div>
-      <p class="text-neo-dark text-2xl pl-10 pr-5"><%= word.english_translation %></p>
+      <div class="text-neo-dark text-2xl pl-10 pr-5 trix-content"><%= word.english_translation %></div>
     </div>
     <div class="ml-8 text-green-700 text-m text-italic underline decoration-dotted">
       <% all_qualifications = word.field_qualifications + [word.stylistic_qualification].compact %>
