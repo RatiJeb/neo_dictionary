@@ -7,7 +7,7 @@ class WordsController < ApplicationController
   def index
     @words = Word.includes(:field_qualifications, :grammar_qualification, :stylistic_qualification, :rich_text_english_translation, :rich_text_etymology, explanations: [ :rich_text_value, examples: :rich_text_value ]).left_joins(:rich_text_english_translation, :rich_text_etymology, explanations: [ :rich_text_value, examples: :rich_text_value ]).distinct
     filter_by_search_word
-    @words = @words.where("word ILIKE ?", "#{params[:letter]}%") if params[:letter].present?
+    @words = @words.where("word ILIKE ?", "#{params[:letter]}%").order(word: :asc) if params[:letter].present?
     @words = @words.order(params[:order] => params[:order] == "created_at" ? :desc : :asc) if params[:order].present?
     @short_names_map = load_qualifications_map(I18n.locale)
 

@@ -20,7 +20,7 @@ en:
   app:
     title: "Dictionary of Georgian Neologisms"
     navbar:
-      about_us: "About Us"
+      about_us: "About the dictionary"
   words:
     card:
       etymology: "Etymology"

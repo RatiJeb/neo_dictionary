@@ -20,7 +20,7 @@ ka:
   app:
     title: "ქართული ნეოლოგიზმების ლექსიკონი"
     navbar:
-      about_us: "ჩვენ შესახებ"
+      about_us: "ლექსიკონის შესახებ"
   words:
     card:
       etymology: "ეტიმოლოგია"
