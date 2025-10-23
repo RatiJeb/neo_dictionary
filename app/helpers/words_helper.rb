@@ -1,4 +1,6 @@
 module WordsHelper
+  include Pagy::Frontend
+
   def highlight_qualifications(content, short_names_map)
     return content unless content.present?
 

@@ -19,12 +19,15 @@ ka:
     back: "უკან"
   app:
     title: "ქართული ნეოლოგიზმების ლექსიკონი"
-  home:
+    navbar:
+      about_us: "ჩვენს შესახებ"
+  words:
     card:
       etymology: "ეტიმოლოგია"
     index:
       search: "ძებნა"
       order: "სორტირება:"
+      exact_match: "ზუსტი დამთხვევა"
   admin:
     title: "ქართული ნეოლოგიზმების ლექსიკონი - მართვის პანელი"
     words:
@@ -35,6 +38,15 @@ ka:
       update_notice: "სიტყვა განახლდა წარმატებით"
       delete_notice: "სიტყვა წარმატებით წაიშალა!"
       delete_error: "სიტყვის წაშლისას წარმოიშვა მოულოდნელი ხარვეზი!"
+      choices:
+        field_qualifications: "დარგობრივი კვალიფიკაციები"
+      index:
+        edit: "რედაქტირება"
+        delete: "წაშლა"
+        action: "მოქმედება"
+        word: "სიტყვა"
+        notice: "შენიშვნა"
+      export_button: ".xlsx ექსპორტი"
     invitations:
       new:
         email: "ელ. ფოსტა"
@@ -47,3 +59,7 @@ ka:
       invite_user: "მომხმარებლის მოწვევა"
       home: "მთავარი"
       other_qualifications: "სხვა კვალიფიკაციები"
+  devise:
+    sessions:
+      new:
+        under_construction: "საიტზე მუშაობა ჯერ არ დასრულებულა. გთხოვთ გაიაროთ ავტორიზაცია მუშაობის გასაგრძელებლად."

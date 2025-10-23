@@ -25,12 +25,15 @@
   <body class="bg-gray-100 flex flex-col h-screen">
     <nav class="px-8 py-4 flex items-center justify-between bg-[#e0ecf9]">
       <div class="flex items-center">
-        <%= image_tag '/neo.png', class: 'h-24' %>
-        <%= link_to t('app.title'), root_path(locale: I18n.locale), class: "ml-8 text-3xl text-neo-dark" %>
+        <%= image_tag '/neo.png', class: 'h-16 md:h-24' %>
+        <%= link_to t('app.title'), root_path(locale: I18n.locale), class: "ml-2 md:ml-8 text-lg md:text-3xl text-neo-dark font-nino" %>
       </div>
-      <%= link_to url_for(params.as_json.merge(locale: (I18n.available_locales - [I18n.locale]).first)), class: "text-neo-dark", data: { turbo: false } do %>
-        <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2", width: 32, height: 32 %>
-      <% end %>
+      <div class="flex items-center gap-6">
+        <a href="#" class="text-neo-dark text-sm md:text-lg font-bold font-nino text-right"><%= t("app.navbar.about_us") %></a>
+        <%= link_to url_for(params.as_json.merge(locale: (I18n.available_locales - [I18n.locale]).first)), class: "text-neo-dark", data: { turbo: false } do %>
+          <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2", width: 32, height: 32 %>
+        <% end %>
+      </div>
     </nav>
     <main class="flex-1">
       <%= yield %>

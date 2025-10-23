@@ -19,12 +19,15 @@ en:
     back: "back"
   app:
     title: "Dictionary of Georgian Neologisms"
-  home:
+    navbar:
+      about_us: "About Us"
+  words:
     card:
       etymology: "Etymology"
     index:
       search: "Search"
       order: "Sort by:"
+      exact_match: "Exact Match"
   admin:
     title: "Dictionary of Georgian Neologisms - Admin"
     words:
@@ -35,6 +38,15 @@ en:
       update_notice: "Word update was successful"
       delete_notice: "word deletion was successful"
       delete_error: "An unexpected error occurred during deleting the word."
+      choices:
+        field_qualifications: "Field Qualifications"
+      index:
+        edit: "Edit"
+        delete: "Delete"
+        action: "Action"
+        word: "Word"
+        notice: "notice"
+      export_button: ".xlsx Export"
     invitations:
       new:
         email: "Email"
@@ -48,3 +60,7 @@ en:
       invite_user: "Invite new user"
       home: "Home"
       other_qualifications: "other qualifications"
+  devise:
+    sessions:
+      new:
+        under_construction: "The website is still under development. Please sign in to continue working on the website."

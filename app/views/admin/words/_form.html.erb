@@ -19,7 +19,7 @@
   </div>
   <div class="block m-6 w-1/2">
     <%= f.label :english_translation, "ინგლისური თარგმანი", class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-    <%= f.text_field :english_translation, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    <%= f.rich_textarea :english_translation %>
   </div>
   <div class="block m-6 w-1/2">
     <%= f.label :etymology, "ეტიმოლოგია", class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
@@ -36,7 +36,11 @@
     <%= f.collection_select :stylistic_qualification_id, @stylistics, :id, :name, { include_blank: "სტილისტური კვალიფიკაცია" }, class: 'bg-white rounded rounded-xl p-2' %>
   </div>
   <div class="block m-6 w-1/2">
-    <%= f.collection_select :field_qualification_id, @fields, :id, :name, { include_blank: "დარგობრივი კვალიფიკაცია" }, class: 'bg-white rounded rounded-xl p-2' %>
+    <p><%= t('admin.words.choices.field_qualifications') %>:</p>
+    <div class="rounded rounded-xl p-2 bg-white">
+      <%= f.collection_select :field_qualification_ids, @fields, :id, :name, { include_hidden: false, multiple: true, selected: @word.field_qualifications.ids }, { id: 'field-select', class: "js-choice" } %>
+    </div>
+    <div id="selected-items" class="my-2 flex flex-wrap gap-2"></div>
   </div>
 
   <div data-controller="explanation-form"
@@ -62,3 +66,5 @@
     <%= f.submit t('admin.words.submit'), class: "text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   </div>
 <% end %>
+
+<%= render partial: 'admin/words/choices' %>

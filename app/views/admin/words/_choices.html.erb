@@ -1,0 +1,47 @@
+<script>
+  document.addEventListener("turbo:load", () => {
+    const el = document.getElementById("field-select");
+    const selectedContainer = document.getElementById("selected-items");
+
+    if (!el || !selectedContainer) return;
+
+    // Destroy existing instance to prevent duplicates
+    if (el._choicesInstance) {
+      try { el._choicesInstance.destroy(); } catch(e) {}
+      el._choicesInstance = null;
+    }
+
+    const choices = new Choices(el, {
+      removeItemButton: false,
+      searchEnabled: true,
+      shouldSort: false,
+      placeholderValue: '<% t('.field_qualifications') %>',
+      duplicateItemsAllowed: false,
+      closeDropdownOnSelect: false
+    });
+
+    el._choicesInstance = choices;
+
+    const renderSelected = () => {
+      selectedContainer.innerHTML = '';
+      choices.getValue().forEach(item => {
+        const pill = document.createElement('div');
+        pill.className = 'inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm bg-blue-600 text-white';
+        pill.innerHTML = `
+        <span>${item.label}</span>
+        <button type="button" class="ml-2 font-bold">×</button>
+      `;
+        pill.querySelector('button').addEventListener('click', () => {
+          choices.removeActiveItemsByValue(item.value);
+          renderSelected();
+        });
+        selectedContainer.appendChild(pill);
+      });
+    };
+
+    // initial render
+    renderSelected();
+
+    el.addEventListener('change', renderSelected);
+  });
+</script>

@@ -5,7 +5,7 @@ module ApplicationHelper
     return html if pagy.series.size <= 1
 
     if pagy.prev
-      html << link_to(url_for(page: pagy.prev), class: "px-4 py-2 bg-neo-dark hover:bg-neo-dark-hover text-white rounded") do
+      html << link_to(url_for(request.query_parameters.merge(page: pagy.prev)), class: "px-4 py-2 bg-neo-dark hover:bg-neo-dark-hover text-white rounded") do
         image_tag("chevron-left-light.svg", alt: "Previous", class: "h-4 w-4")
       end
     else
@@ -15,7 +15,7 @@ module ApplicationHelper
     pagy.series.each do |item|
       case item
       when Integer
-        html << link_to(item, url_for(page: item), class: "px-3 py-1 border rounded hover:bg-neo")
+        html << link_to(item, url_for(request.query_parameters.merge(page: item)), class: "px-3 py-1 border rounded hover:bg-neo")
       when String
         html << content_tag(:span, item, class: "px-3 py-1 border-neo-dark border rounded hover:bg-neo")
       when :gap
@@ -26,7 +26,7 @@ module ApplicationHelper
     end
 
     if pagy.next
-      html << link_to(url_for(page: pagy.next), class: "px-4 py-2 bg-neo-dark hover:bg-neo-dark-hover text-white rounded") do
+      html << link_to(url_for(request.query_parameters.merge(page: pagy.next)), class: "px-4 py-2 bg-neo-dark hover:bg-neo-dark-hover text-white rounded") do
         image_tag("chevron-right-light.svg", alt: "Next", class: "h-4 w-4")
       end
     else

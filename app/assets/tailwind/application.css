@@ -20,6 +20,8 @@
   }
 }
 
+.restore-link-style a { all: revert; }
+
 .btn-primary {
   @apply text-white bg-neo-dark hover:bg-neo-dark-hover focus:ring-4 focus:outline-none focus:ring-neo font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center
 }

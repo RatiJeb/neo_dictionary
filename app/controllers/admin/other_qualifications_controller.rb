@@ -37,7 +37,7 @@ module Admin
     def destroy
       @other_qualification = OtherQualification.find(params[:id])
 
-      redirect_to admin_other_qualifications_path, notice: @other_qualification.destroy! ? I18n.t("admin.other_qualifications.delete_notice") : I18n.t("admin.other_qualifications.delete_error")
+      redirect_to admin_other_qualifications_path, notice: @other_qualification.soft_delete ? I18n.t("admin.other_qualifications.delete_notice") : I18n.t("admin.other_qualifications.delete_error")
     end
 
     private

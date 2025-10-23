@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "ნეოლოგიზმები") do |sheet|
+  sheet.add_row ['word', 'english_translation', 'transliteration', 'etymology', 'grammar_qualification', 'stylistic_qualification', 'field_qualifications', 'explanations']
+  @words.each do |word|
+    row = [word.word, word.english_translation&.body&.to_html, word.transliteration, word.etymology&.body&.to_html, word.grammar_qualification&.name, word.stylistic_qualification&.name, word.field_qualifications.map(&:name).join(', ')]
+    explanation_str = ""
+    explanations = word.explanations.each_with_index do |explanation, index|
+      explanation_str += "Explanation #{index + 1}: #{explanation.value&.body&.to_html}</br>"
+      explanation.examples.each_with_index do |example, i|
+        explanation_str += "Example #{i}: #{example.value&.body&.to_html}</br>"
+      end
+    end
+    row << explanation_str
+    sheet.add_row row
+  end
+end

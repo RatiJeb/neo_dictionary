@@ -18,7 +18,7 @@ module Admin
     end
 
     def edit
-      @word = Word.find(params[:id])
+      @word = Word.includes(explanations: [ :rich_text_value, examples: [ :rich_text_value ] ]).find(params[:id])
       @grammars = GrammarQualification.order(:name).all
       @stylistics = StylisticQualification.order(:name).all
       @fields = FieldQualification.order(:name).all
@@ -34,7 +34,7 @@ module Admin
     end
 
     def update
-      @word = Word.find(params[:id])
+      @word = Word.includes(explanations: [ :rich_text_value, examples: [ :rich_text_value ] ]).find(params[:id])
       if @word.update(word_params)
         redirect_to admin_words_path, notice: I18n.t("admin.words.update_notice")
       else
@@ -45,17 +45,30 @@ module Admin
     def destroy
       @word = Word.find(params[:id])
 
-      redirect_to admin_words_path, notice: @word.destroy! ? I18n.t("admin.words.delete_notice") : I18n.t("admin.words.delete_error")
+      redirect_to admin_words_path, notice: @word.soft_delete ? I18n.t("admin.words.delete_notice") : I18n.t("admin.words.delete_error")
     end
 
     private
 
     def word_params
       params.require(:word).permit(
-        :word, :etymology, :note, :grammar_qualification_id, :stylistic_qualification_id, :field_qualification_id,
-        :transliteration, :english_translation, explanations_attributes: [
-          :id, :value, :_destroy,
-          examples_attributes: [ :id, :value, :_destroy ]
+        :word,
+        :transliteration,
+        :english_translation,
+        :etymology,
+        :note,
+        :grammar_qualification_id,
+        :stylistic_qualification_id,
+        field_qualification_ids: [], # array of IDs
+        explanations_attributes: [
+          :id,
+          :value,
+          :_destroy,
+          examples_attributes: [
+            :id,
+            :value,
+            :_destroy
+          ]
         ]
       )
     end

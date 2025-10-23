@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_11_043944) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_23_001429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -88,6 +88,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_043944) do
     t.string "name", null: false
     t.string "en_name"
     t.string "en_short_name"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_other_qualifications_on_deleted_at"
     t.index ["name"], name: "index_other_qualifications_on_name", unique: true
     t.index ["short_name"], name: "index_other_qualifications_on_short_name", unique: true
   end
@@ -129,6 +131,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_043944) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "word_field_qualifications", force: :cascade do |t|
+    t.bigint "word_id"
+    t.bigint "field_qualification_id"
+    t.index ["field_qualification_id"], name: "index_word_field_qualifications_on_field_qualification_id"
+    t.index ["word_id"], name: "index_word_field_qualifications_on_word_id"
+  end
+
   create_table "words", force: :cascade do |t|
     t.string "word", null: false
     t.string "english_translation"
@@ -138,6 +147,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_11_043944) do
     t.bigint "grammar_qualification_id"
     t.bigint "stylistic_qualification_id"
     t.bigint "field_qualification_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_words_on_deleted_at"
     t.index ["english_translation"], name: "idx_english_translation_trigram", opclass: :gin_trgm_ops, using: :gin
     t.index ["field_qualification_id"], name: "index_words_on_field_qualification_id"
     t.index ["grammar_qualification_id"], name: "index_words_on_grammar_qualification_id"
