@@ -60,7 +60,7 @@
                 data: { chevron_toggle_target: "arrow", down_src: asset_path("chevron-down-light.svg"), right_src: asset_path("chevron-right-light.svg") },
                 alt: "dropdown arrow"
               ) %>
-          <%= t('home.card.etymology') %>
+          <%= t('words.card.etymology') %>
         </button>
         <div data-chevron-toggle-target="content" class="bg-neo-light w-full rounded-b-xl pt-2 pb-4 px-8 hidden [&_a]:text-blue-600 [&_a:hover]:underline">
           <p><%= highlight_qualifications(word.etymology.body.to_html, @short_names_map) %></p>
