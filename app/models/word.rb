@@ -23,7 +23,7 @@
 #  index_words_on_stylistic_qualification_id  (stylistic_qualification_id)
 #
 class Word < ApplicationRecord
-  include SoftDeletable
+  # include SoftDeletable
   has_many :explanations, dependent: :destroy
   has_many :examples, through: :explanations, dependent: :destroy
   belongs_to :stylistic_qualification, optional: true
