@@ -21,7 +21,7 @@
     <tbody>
       <% @words.each do |word| %>
         <tr>
-          <td class="border border-2 px-4 py-2"><%= link_to word.id, word_path(word) %></td>
+          <td class="border border-2 px-4 py-2"><%= link_to word.id, word_path(word), target: "_blank" %></td>
           <td class="border border-2 px-4 py-2"><%= word.word %></td>
           <td class="border border-2 px-4 py-2"><%= word.note %></td>
           <td class="border border-2 px-4 py-2">
