@@ -5,16 +5,11 @@ export default class extends Controller {
   static targets = ["exampleContainer", "exampleTemplate"]
 
   connect() {
-    console.log('Example Form Controller')
-    console.log(this.exampleContainerTarget)
-    console.log(this.index)
     this.index = this.exampleContainerTarget.children.length
   }
 
   addExample(event) {
     event.preventDefault()
-    console.log(this.index)
-    console.log(this.exampleTemplateTarget.innerHTML)
     const content = this.exampleTemplateTarget.innerHTML.replace(/NEW_EXAMPLE_RECORD/g, this.index)
     this.exampleContainerTarget.insertAdjacentHTML("beforeend", content)
     this.index++

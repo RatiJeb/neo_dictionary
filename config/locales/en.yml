@@ -28,6 +28,8 @@ en:
       search: "Search"
       order: "Sort by:"
       exact_match: "Exact Match"
+    show:
+      search: "Search"
   admin:
     title: "Dictionary of Georgian Neologisms - Admin"
     words:
@@ -38,6 +40,8 @@ en:
       update_notice: "Word update was successful"
       delete_notice: "word deletion was successful"
       delete_error: "An unexpected error occurred during deleting the word."
+      restore_notice: "word restoration was successful"
+      restore_error: "An unexpected error occurred during restoration of the word."
       choices:
         field_qualifications: "Field Qualifications"
       index:
@@ -46,7 +50,14 @@ en:
         action: "Action"
         word: "Word"
         notice: "notice"
+        titles:
+          words_count: "Active words: %{active_count}. Deleted words: %{deleted_count}"
+        modal_heading: ".xlsx file export"
       export_button: ".xlsx Export"
+      restore_button: "restore deleted words"
+      short_forms_button: "qualification short forms"
+      xlsx_export:
+        all: "All letters"
     invitations:
       new:
         email: "Email"
@@ -60,6 +71,32 @@ en:
       invite_user: "Invite new user"
       home: "Home"
       other_qualifications: "other qualifications"
+    short_forms:
+      index:
+        titles:
+          grammars: "Grammar Qualifications"
+          stylistics: "Stylistic Qualifications"
+          fields: "Field Qualifications"
+        stylistics:
+          name: "qualification (ge)"
+          en_name: "qualification (en)"
+          name_short: "qualification short form (ge)"
+          en_name_short: "qualification short form (en)"
+        fields:
+          name: "qualification (ge)"
+          en_name: "qualification (en)"
+          name_short: "qualification short form (ge)"
+          en_name_short: "qualification short form (en)"
+        grammar:
+          name: "qualification (ge)"
+          en_name: "qualification (en)"
+          name_short: "qualification short form (ge)"
+          en_name_short: "qualification short form (en)"
+    recently_deleted_words:
+      index:
+        word: "Word"
+        notice: "Notice"
+        restore: "Restore"
   devise:
     sessions:
       new:

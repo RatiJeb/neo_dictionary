@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       root to: "words#index"
       resources :invitations, only: [ :new, :create ]
       resources :words
+      resources :recently_deleted_words, only: [ :index, :update ]
+      resources :short_forms, only: [ :index ]
       resources :other_qualifications
       get "xlsx_exports/words", to: "xlsx_exports#words"
     end

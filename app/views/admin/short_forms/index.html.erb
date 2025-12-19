@@ -1,0 +1,69 @@
+<div id="grammars-section" class="mx-6 mt-4">
+  <h2 class="text-2xl"><%= t('.titles.grammars') %></h2>
+  <table class="mt-4">
+    <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.grammar.name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.grammar.name_short') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.grammar.en_name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.grammar.en_name_short') %></td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @grammars.each do |grammar| %>
+      <tr>
+        <td class="border border-2 px-4 py-2"><%= grammar.name %></td>
+        <td class="border border-2 px-4 py-2"><%= grammar.short_name %></td>
+        <td class="border border-2 px-4 py-2"><%= grammar.en_name %></td>
+        <td class="border border-2 px-4 py-2"><%= grammar.en_short_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div id="stylistics-section" class="mx-6 mt-4">
+  <h2 class="text-2xl"><%= t('.titles.stylistics') %></h2>
+  <table class="mt-4">
+    <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.stylistics.name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.stylistics.name_short') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.stylistics.en_name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.stylistics.en_name_short') %></td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @stylistics.each do |stylistic| %>
+      <tr>
+        <td class="border border-2 px-4 py-2"><%= stylistic.name %></td>
+        <td class="border border-2 px-4 py-2"><%= stylistic.short_name %></td>
+        <td class="border border-2 px-4 py-2"><%= stylistic.en_name %></td>
+        <td class="border border-2 px-4 py-2"><%= stylistic.en_short_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div id="fields-section" class="mx-6 mt-4">
+  <h2 class="text-2xl"><%= t('.titles.fields') %></h2>
+  <table class="mt-4">
+    <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.fields.name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.fields.name_short') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.fields.en_name') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.fields.en_name_short') %></td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @fields.each do |field| %>
+      <tr>
+        <td class="border border-2 px-4 py-2"><%= field.name %></td>
+        <td class="border border-2 px-4 py-2"><%= field.short_name %></td>
+        <td class="border border-2 px-4 py-2"><%= field.en_name %></td>
+        <td class="border border-2 px-4 py-2"><%= field.en_short_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

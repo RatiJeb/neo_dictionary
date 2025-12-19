@@ -28,6 +28,8 @@ ka:
       search: "ძებნა"
       order: "სორტირება:"
       exact_match: "ზუსტი დამთხვევა"
+    show:
+      search: "ძებნა"
   admin:
     title: "ქართული ნეოლოგიზმების ლექსიკონი - მართვის პანელი"
     words:
@@ -38,6 +40,8 @@ ka:
       update_notice: "სიტყვა განახლდა წარმატებით"
       delete_notice: "სიტყვა წარმატებით წაიშალა!"
       delete_error: "სიტყვის წაშლისას წარმოიშვა მოულოდნელი ხარვეზი!"
+      restore_notice: "სიტყვის აღდგენა მოხდა წარმატებით!"
+      restore_error: "სიტყვის აღდგენისას წარმოიშვა მოულოდნელი ხარვეზი!"
       choices:
         field_qualifications: "დარგობრივი კვალიფიკაციები"
       index:
@@ -46,7 +50,14 @@ ka:
         action: "მოქმედება"
         word: "სიტყვა"
         notice: "შენიშვნა"
+        titles:
+          words_count: "აქტიური სიტყვები: %{active_count}. წაშლილი სიტყვები: %{deleted_count}"
+        modal_heading: ".xlsx ფაილის ექსპორტი"
       export_button: ".xlsx ექსპორტი"
+      restore_button: "წაშლილების აღდგენა"
+      short_forms_button: "კვალიფიკაციების მოკლე ფორმები"
+      xlsx_export:
+        all: "ყველა ასო"
     invitations:
       new:
         email: "ელ. ფოსტა"
@@ -59,6 +70,32 @@ ka:
       invite_user: "მომხმარებლის მოწვევა"
       home: "მთავარი"
       other_qualifications: "სხვა კვალიფიკაციები"
+    short_forms:
+      index:
+        titles:
+          grammars: "გრამატიკული კვალიფიკაციები"
+          stylistics: "სტილისტური კვალიფიკაციები"
+          fields: "დარგობრივი კვალიფიკაციები"
+        grammar:
+          name: "კვალიფიკაცია (ქარ)"
+          en_name: "კვალიფიკაცია (ინგ)"
+          name_short: "კვალიფიკაციის შემოკლება (ქარ)"
+          en_name_short: "კვალიფიკაციის შემოკლება (ინგ)"
+        stylistics:
+          name: "კვალიფიკაცია (ქარ)"
+          en_name: "კვალიფიკაცია (ინგ)"
+          name_short: "კვალიფიკაციის შემოკლება (ქარ)"
+          en_name_short: "კვალიფიკაციის შემოკლება (ინგ)"
+        fields:
+          name: "კვალიფიკაცია (ქარ)"
+          en_name: "კვალიფიკაცია (ინგ)"
+          name_short: "კვალიფიკაციის შემოკლება (ქარ)"
+          en_name_short: "კვალიფიკაციის შემოკლება (ინგ)"
+    recently_deleted_words:
+      index:
+        word: "სიტყვა"
+        notice: "შენიშვნა"
+        restore: "აღდგენა"
   devise:
     sessions:
       new:

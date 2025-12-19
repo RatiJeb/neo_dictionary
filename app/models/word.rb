@@ -38,4 +38,8 @@ class Word < ApplicationRecord
   accepts_nested_attributes_for :explanations, allow_destroy: true
 
   validates :word, presence: true
+
+  def self.deleted
+    unscoped.where.not(deleted_at: nil)
+  end
 end

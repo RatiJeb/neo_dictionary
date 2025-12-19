@@ -1,24 +1,30 @@
-<div id="words-section" class="mx-6 mt-4">
-  <div class="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-between">
-    <div>
-      <%= link_to t('admin.words.new_button'), new_admin_word_path, class: "btn-primary" %>
-      <%= link_to t('admin.words.export_button'), admin_xlsx_exports_words_path(format: :xlsx), class: "btn-primary" %>
+<div data-controller="modal">
+  <div id="words-section" class="mx-6 mt-4">
+    <div class="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-between">
+      <div class="flex gap-2">
+        <%= link_to t('admin.words.new_button'), new_admin_word_path, class: "btn-primary" %>
+        <%= button_tag t('admin.words.export_button'), class: "btn-primary", data: { action: "click->modal#toggleHidden" } %>
+        <%= link_to t('admin.words.restore_button'), admin_recently_deleted_words_path, class: "btn-primary" %>
+        <%= link_to t('admin.words.short_forms_button'), admin_short_forms_path, class: "btn-primary" %>
+      </div>
+      <%= form_with url: admin_root_path, method: :get, class: "flex items-center gap-2" do |f| %>
+        <%= f.text_field :search, value: params[:search], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 inline-block" %>
+        <%= f.submit t('words.index.search'), class: "btn-primary inline-block" %>
+      <% end %>
     </div>
-    <%= form_with url: admin_root_path, method: :get, class: "flex items-center gap-2" do |f| %>
-      <%= f.text_field :search, value: params[:search], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 inline-block" %>
-      <%= f.submit t('words.index.search'), class: "btn-primary inline-block" %>
-    <% end %>
-  </div>
-  <table class="mt-4">
-  <thead>
-    <tr>
-      <td class="border border-2 px-4 py-2 text-gray-500">ID</td>
-      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.word') %></td>
-      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.notice') %></td>
-      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.action') %></td>
-    </tr>
-  </thead>
-    <tbody>
+    <div class="w-full flex justify-center">
+      <h2 class="text-xl my-6"><%= t('.titles.words_count', active_count: @words_count, deleted_count: @deleted_count) %></h2>
+    </div>
+    <table class="mt-4">
+      <thead>
+      <tr>
+        <td class="border border-2 px-4 py-2 text-gray-500">ID</td>
+        <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.word') %></td>
+        <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.notice') %></td>
+        <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.action') %></td>
+      </tr>
+      </thead>
+      <tbody>
       <% @words.each do |word| %>
         <tr>
           <td class="border border-2 px-4 py-2"><%= link_to word.id, word_path(word), target: "_blank" %></td>
@@ -32,6 +38,19 @@
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+  <div id="excel-modal" class="hidden absolute top-0 w-full h-full bg-[#00000066] flex items-center justify-center z-50 px-30" data-modal-target="modal">
+    <div class="bg-white p-6 rounded-lg relative w-full">
+      <%= button_tag 'x', class: "absolute right-[10px] top-[10px] px-2 bg-white border-gray border rounded-xl", data: { action: "click->modal#toggleHidden" } %>
+      <h2 class="text-xl mb-4"><%= t('.modal_heading') %></h2>
+      <%= link_to t('admin.words.xlsx_export.all'), admin_xlsx_exports_words_path(format: :xlsx), class: "btn-primary mt-4" %>
+      <div class="w-full">
+        <% ALPHABET_LETTERS.each do |letter| %>
+          <%= link_to letter, admin_xlsx_exports_words_path(format: :xlsx, letter:), class: 'btn-primary inline-block mt-4' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

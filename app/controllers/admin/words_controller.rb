@@ -3,6 +3,8 @@ module Admin
     def index
       @words = Word.includes(:rich_text_note)
       @words = @words.where("word ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+      @words_count = Word.count
+      @deleted_count = Word.deleted.count
     end
 
     def show
@@ -35,6 +37,9 @@ module Admin
 
     def update
       @word = Word.includes(explanations: [ :rich_text_value, examples: [ :rich_text_value ] ]).find(params[:id])
+      if word_params[:field_qualification_ids].blank?
+        @word.word_field_qualifications.destroy_all
+      end
       if @word.update(word_params)
         redirect_to admin_words_path, notice: I18n.t("admin.words.update_notice")
       else

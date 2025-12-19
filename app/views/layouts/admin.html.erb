@@ -34,7 +34,7 @@
         <%= link_to t('admin.navbar.invite_user'), new_admin_invitation_path, class: "ml-2 md:ml-8 text-neo-dark" %>
         <%= link_to t('admin.navbar.other_qualifications'), admin_other_qualifications_path, class: "ml-2 md:ml-8 text-neo-dark" %>
         <%= link_to url_for(params.as_json.merge(locale: (I18n.available_locales - [I18n.locale]).first)), class: "text-neo-dark", data: { turbo: false } do %>
-          <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2 max-w-8 max-h-8", width: 32, height: 32 %>
+          <%= image_tag "#{ (I18n.available_locales - [I18n.locale]).first }.svg", class: "rounded rounded-lg border border-white border-2 max-w-8 max-h-8 ml-2 md:ml-8", width: 32, height: 32 %>
         <% end %>
       </div>
     </nav>

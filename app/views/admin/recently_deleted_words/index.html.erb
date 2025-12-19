@@ -1,0 +1,24 @@
+<div id="words-section" class="mx-6 mt-4">
+  <table class="mt-4">
+    <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500">ID</td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.word') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.notice') %></td>
+      <td class="border border-2 px-4 py-2 text-gray-500"><%= t('.restore') %></td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @words.each do |word| %>
+      <tr>
+        <td class="border border-2 px-4 py-2"><%= word.id %></td>
+        <td class="border border-2 px-4 py-2"><%= word.word %></td>
+        <td class="border border-2 px-4 py-2"><%= word.note %></td>
+        <td class="border border-2 px-4 py-2">
+          <%= button_to t('.restore'), admin_recently_deleted_word_path(word), method: :patch, class: "text-[#555] hover:text-black bg-gray-300 p-2 rounded rounded-lg", data: { turbo_confirm: "ნამდვილად გსურთ აღდგენა?" } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

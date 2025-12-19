@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "content", "arrow", "parameter" ]
 
   connect() {
-    console.log('Chevron Toggle Controller')
   }
 
   toggle() {

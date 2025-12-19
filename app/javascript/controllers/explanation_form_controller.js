@@ -5,16 +5,11 @@ export default class extends Controller {
   static targets = ["explanationContainer", "explanationTemplate"]
 
   connect() {
-    console.log('Explanation Form Controller')
-    console.log(this.explanationContainerTarget)
     this.index = this.explanationContainerTarget.children.length - 1
-    console.log(this.index)
   }
 
   addExplanation(event) {
     event.preventDefault()
-    console.log(this.explanationContainerTarget)
-    console.log(this.index)
     const content = this.explanationTemplateTarget.innerHTML.replace(/NEW_EXPLANATION_RECORD/g, this.index)
     this.explanationContainerTarget.insertAdjacentHTML("beforeend", content)
     this.index++
