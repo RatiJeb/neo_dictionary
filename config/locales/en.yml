@@ -35,6 +35,9 @@ en:
     words:
       new_button: "Add new word"
       submit: "Submit"
+      search_tags: "Search tags"
+      add_search_tag: "Add search tag"
+      remove_search_tag: "Remove search tag"
       create_notice: "Word was added to the database successfully."
       add_explanation: "add explanation"
       update_notice: "Word update was successful"

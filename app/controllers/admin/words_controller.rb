@@ -1,8 +1,8 @@
 module Admin
   class WordsController < ::Admin::BaseController
     def index
-      @words = Word.includes(:rich_text_note)
-      @words = @words.where("word ILIKE ?", "%#{params[:search]}%") if params[:search].present?
+      @words = Word.includes(:search_tags, :rich_text_note).left_joins(:search_tags).distinct
+      @words = @words.where("word ILIKE :search OR search_tags.name ILIKE :search", search: "%#{params[:search]}%") if params[:search].present?
       @words_count = Word.count
       @deleted_count = Word.deleted.count
     end
@@ -17,10 +17,11 @@ module Admin
       @stylistics = StylisticQualification.order(:name).all
       @fields = FieldQualification.order(:name).all
       @word.explanations.build
+      @word.search_tags.build
     end
 
     def edit
-      @word = Word.includes(explanations: [ :rich_text_value, examples: [ :rich_text_value ] ]).find(params[:id])
+      @word = Word.includes(:search_tags, explanations: [ :rich_text_value, examples: [ :rich_text_value ] ]).find(params[:id])
       @grammars = GrammarQualification.order(:name).all
       @stylistics = StylisticQualification.order(:name).all
       @fields = FieldQualification.order(:name).all
@@ -65,6 +66,11 @@ module Admin
         :grammar_qualification_id,
         :stylistic_qualification_id,
         field_qualification_ids: [], # array of IDs
+        search_tags_attributes: [
+          :id,
+          :name,
+          :_destroy
+        ],
         explanations_attributes: [
           :id,
           :value,

@@ -22,26 +22,28 @@
 #  index_words_on_grammar_qualification_id    (grammar_qualification_id)
 #  index_words_on_stylistic_qualification_id  (stylistic_qualification_id)
 #
-class Word < ApplicationRecord
-  include SoftDeletable
-  has_many :explanations, dependent: :destroy
-  has_many :examples, through: :explanations, dependent: :destroy
-  belongs_to :stylistic_qualification, optional: true
-  belongs_to :grammar_qualification, optional: true
-  has_many :word_field_qualifications
-  has_many :field_qualifications, through: :word_field_qualifications
-  has_many :search_tags, dependent: :destroy, autosave: true
+require 'rails_helper'
 
-  has_rich_text :english_translation
-  has_rich_text :etymology
-  has_rich_text :note
+RSpec.describe Word, type: :model do
+  describe "search tags" do
+    it "creates and removes search tags through nested attributes" do
+      word = described_class.create!(
+        word: "neo",
+        search_tags_attributes: {
+          "0" => { name: "new, modern" },
+          "1" => { name: "fresh" }
+        }
+      )
 
-  accepts_nested_attributes_for :explanations, allow_destroy: true
-  accepts_nested_attributes_for :search_tags, allow_destroy: true, reject_if: ->(attributes) { attributes["name"].blank? }
+      expect(word.search_tags.pluck(:name)).to contain_exactly("new, modern", "fresh")
 
-  validates :word, presence: true
+      word.update!(
+        search_tags_attributes: {
+          "0" => { id: word.search_tags.find_by!(name: "new, modern").id, _destroy: "1" }
+        }
+      )
 
-  def self.deleted
-    unscoped.where.not(deleted_at: nil)
+      expect(word.search_tags.reload.pluck(:name)).to contain_exactly("fresh")
+    end
   end
 end

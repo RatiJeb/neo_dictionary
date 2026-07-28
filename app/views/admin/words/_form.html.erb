@@ -17,6 +17,18 @@
     <%= f.label :transliteration, "ტრანსლიტერაცია", class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
     <%= f.text_field :transliteration, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
+  <div data-controller="search-tag-form" class="block m-6 w-1/2">
+    <%= f.label :search_tags, t("admin.words.search_tags"), class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <div data-search-tag-form-target="tagContainer" class="space-y-2">
+      <% f.object.search_tags.each_with_index do |search_tag, i| %>
+        <%= render "search_tag_fields", f: f, search_tag: search_tag, index: i %>
+      <% end %>
+    </div>
+    <button type="button" data-action="click->search-tag-form#addTag" class="text-sm text-green-600 mt-2">+ <%= t("admin.words.add_search_tag") %></button>
+    <template data-search-tag-form-target="tagTemplate">
+      <%= render "search_tag_fields", f: f, search_tag: SearchTag.new, index: "NEW_SEARCH_TAG_RECORD" %>
+    </template>
+  </div>
   <div class="block m-6 w-1/2">
     <%= f.label :english_translation, "ინგლისური თარგმანი", class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
     <%= f.rich_textarea :english_translation %>

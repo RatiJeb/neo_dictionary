@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_23_001429) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_29_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -94,6 +94,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_23_001429) do
     t.index ["short_name"], name: "index_other_qualifications_on_short_name", unique: true
   end
 
+  create_table "search_tags", force: :cascade do |t|
+    t.bigint "word_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_search_tags_on_name"
+    t.index ["word_id", "name"], name: "index_search_tags_on_word_id_and_name", unique: true
+    t.index ["word_id"], name: "index_search_tags_on_word_id"
+  end
+
   create_table "stylistic_qualifications", force: :cascade do |t|
     t.string "short_name", null: false
     t.string "name", null: false
@@ -160,4 +170,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_23_001429) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "examples", "explanations"
   add_foreign_key "explanations", "words"
+  add_foreign_key "search_tags", "words"
 end
