@@ -1,0 +1,36 @@
+ka:
+  devise:
+    failure:
+      invited: "თქვენ გიფიქსირდებათ მიმდინარე მოსაწვევი. გთხოვთ დაეთანხმოთ გასაგრძელებლად."
+    invitations:
+      send_instructions: "ელ.ფოსტის მისამართზე %{email} გამოგეგზავნათ მოსაწვევი."
+      invitation_token_invalid: "მოსაწვევი ტოკენი არ არის ვალიდური!"
+      updated: "თქვენი პაროლი წარმატებით შეიცვალა. თქვენ ახლა ავტორიზებული ხართ."
+      updated_not_active: "თქვენი პაროლი წარმატებით შეიცვალა."
+      no_invitations_remaining: "დარჩენილია 0 მოსაწვევი"
+      invitation_removed: "თქვენი მოსაწვევი წაშლილია."
+      new:
+        header: "მოსაწვევის გაგზავნა"
+        submit_button: "მოსაწვევის გაგზავნა"
+      edit:
+        header: "პაროლის განახლება"
+        submit_button: "პაროლის შეცვლა"
+    mailer:
+      invitation_instructions:
+        subject: "მოწვევის ინსტრუქცია"
+        hello: "გამარჯობა %{email}"
+        someone_invited_you: "თქვენ მოგიწვიეს ვებგვერდზე %{url}, თქვენ შეგიძლიათ დათანხმდეთ მოწვევას შემდეგი ბმულით."
+        accept: "მოწვევაზე დათანხმება"
+        accept_until: "მოსაწვევი ძალაშია %{due_date}-მდე."
+        ignore: "თუ არ გსურთ დათანხმება, დააიგნორეთ ეს გზავნილი. თქვენი მომხმარებელი არ შეიქმნება იქამდე, სანამ პაროლს არ დააყენებთ."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+  admin:
+    invitations:
+      new:
+        invite_user: "ახალი მომხმარებლის მოწვევა"
+        send_invitation: "მოსაწვევის გაგზავნა"
