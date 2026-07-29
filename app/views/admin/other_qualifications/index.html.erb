@@ -1,0 +1,32 @@
+<div id="words-section" class="mx-6 mt-4">
+  <div>
+    <%= link_to t('admin.other_qualifications.new_button'), new_admin_other_qualification_path, class: "btn-primary" %>
+  </div>
+  <table class="mt-4">
+  <thead>
+    <tr>
+      <td class="border border-2 px-4 py-2 text-gray-500">მოკლე აღნიშვნა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">სრული აღნიშვნა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">ინგლისური მოკლე აღნიშვნა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">ინგლისური სრული აღნიშვნა</td>
+      <td class="border border-2 px-4 py-2 text-gray-500">მოქმედება</td>
+    </tr>
+  </thead>
+    <tbody>
+      <% @other_qualifications.each do |other_qualification| %>
+        <tr>
+          <td class="border border-2 px-4 py-2"><%= other_qualification.short_name %></td>
+          <td class="border border-2 px-4 py-2"><%= other_qualification.name %></td>
+          <td class="border border-2 px-4 py-2"><%= other_qualification.en_short_name %></td>
+          <td class="border border-2 px-4 py-2"><%= other_qualification.en_name %></td>
+          <td class="border border-2 px-4 py-2">
+            <div class="flex gap-1 items-center">
+              <%= link_to 'რედაქტირება', edit_admin_other_qualification_path(other_qualification), class: "text-[#555] hover:text-black bg-neo p-2 rounded rounded-lg" %>
+              <%= button_to 'წაშლა', admin_other_qualification_path(other_qualification), method: :delete, class: "text-[#555] hover:text-black bg-gray-300 p-2 rounded rounded-lg" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
