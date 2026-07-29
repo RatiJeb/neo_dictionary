@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.4.1"
+ruby "3.4.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
@@ -43,12 +43,23 @@ gem "thruster", require: false
 
 # gem for authentication [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
+gem "devise_invitable", "~> 2.0"
 
 # dotenv
 gem "dotenv-rails", "~> 3.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+
+# pagination
+gem "pagy", "~> 9.3.4"
+
+# html parser
+gem "nokogiri"
+
+# excel generator
+gem "caxlsx", "~> 4.4.0"
+gem "caxlsx_rails", "~> 0.6.4"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
@@ -65,4 +76,5 @@ group :development do
   gem "web-console"
   gem "bullet"
   gem "bundle-audit"
+  gem "annotaterb"
 end
