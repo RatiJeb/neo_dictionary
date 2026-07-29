@@ -1,0 +1,8 @@
+<%= f.fields_for :search_tags, search_tag, child_index: index do |stf| %>
+  <div data-search-tag-form-target="wrapper" class="flex items-center gap-2">
+    <%= stf.hidden_field :id if search_tag.persisted? %>
+    <%= stf.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    <%= stf.hidden_field :_destroy %>
+    <button type="button" data-action="click->search-tag-form#removeTag" class="text-sm text-red-600 whitespace-nowrap"><%= t("admin.words.remove_search_tag") %></button>
+  </div>
+<% end %>
