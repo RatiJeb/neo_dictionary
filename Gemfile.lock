@@ -107,10 +107,10 @@ GEM
     connection_pool (3.0.2)
     crass (1.0.7)
     date (3.5.1)
-    devise (4.9.4)
+    devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
     devise_invitable (2.0.12)
@@ -413,7 +413,7 @@ DEPENDENCIES
   bundle-audit
   caxlsx (~> 4.4.0)
   caxlsx_rails (~> 0.6.4)
-  devise (~> 4.9)
+  devise (~> 5.0)
   devise_invitable (~> 2.0)
   dotenv-rails (~> 3.1)
   image_processing (~> 1.2)

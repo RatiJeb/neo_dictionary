@@ -42,7 +42,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # gem for authentication [https://github.com/heartcombo/devise]
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "devise_invitable", "~> 2.0"
 
 # dotenv

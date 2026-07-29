@@ -6,6 +6,22 @@ on:
     branches: [ main ]
 
 jobs:
+  repository_hygiene:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Ensure local secrets and OS files are not tracked
+        run: |
+          tracked_files="$(git ls-files config/master.key 'config/credentials/*.key' '.env' '.env.*' '*.DS_Store' | grep -v '\.erb$' || true)"
+          if [ -n "$tracked_files" ]; then
+            echo "These files should not be committed:"
+            echo "$tracked_files"
+            exit 1
+          fi
+
   scan_ruby:
     runs-on: ubuntu-latest
 
@@ -21,6 +37,9 @@ jobs:
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
+
+      - name: Scan for vulnerable Ruby dependencies
+        run: bundle exec bundler-audit check --update
 
   scan_js:
     runs-on: ubuntu-latest
@@ -52,6 +71,53 @@ jobs:
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
+
+  autoload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Check Rails autoloading
+        run: bin/rails zeitwerk:check
+
+  assets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Compile production assets
+        env:
+          RAILS_ENV: production
+          SECRET_KEY_BASE_DUMMY: 1
+          DATABASE_URL: postgresql://user:pass@localhost:5432/dbname
+          TEST_DATABASE_URL: postgresql://user:pass@localhost:5432/dbname
+        run: bin/rails assets:precompile
+
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Build Docker image
+        run: docker build --tag neo-dict:ci .
 
   test:
     runs-on: ubuntu-latest
@@ -96,7 +162,7 @@ jobs:
         run: bin/rails db:test:prepare spec
 
       - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: screenshots
