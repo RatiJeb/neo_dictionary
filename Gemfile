@@ -49,7 +49,7 @@ gem "devise_invitable", "~> 2.0"
 gem "dotenv-rails", "~> 3.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.0"
 
 # pagination
 gem "pagy", "~> 9.3.4"
