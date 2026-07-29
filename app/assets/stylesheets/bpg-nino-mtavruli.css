@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "BPG Nino Mtavruli";
+    src: url("bpg-nino-mtavruli-webfont.woff2") format("woff2"), /* Super Modern Browsers */
+         url("bpg-nino-mtavruli-webfont.woff") format("woff"), /* Pretty Modern Browsers */
+         url("bpg-nino-mtavruli-webfont.ttf") format("truetype") /* Safari, Android, iOS */
+}
+
+.font-nino {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+}
