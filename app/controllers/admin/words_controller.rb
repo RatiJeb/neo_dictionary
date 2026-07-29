@@ -1,14 +1,15 @@
 module Admin
   class WordsController < ::Admin::BaseController
     def index
-      @words = Word.includes(:search_tags, :rich_text_note).left_joins(:search_tags).distinct
-      @words = @words.where("word ILIKE :search OR search_tags.name ILIKE :search", search: "%#{params[:search]}%") if params[:search].present?
+      @words = Word.includes(:rich_text_note)
+      @words = @words.left_joins(:search_tags).where("word ILIKE :search OR search_tags.name ILIKE :search", search: "%#{params[:search]}%").distinct if params[:search].present?
       @words_count = Word.count
       @deleted_count = Word.deleted.count
     end
 
     def show
-      @word = Word.find(params[:id])
+      @word = Word.includes(:field_qualifications, :grammar_qualification, :stylistic_qualification, :rich_text_english_translation, :rich_text_etymology, explanations: [ :rich_text_value, examples: :rich_text_value ]).find(params[:id])
+      @short_names_map = load_qualifications_map(I18n.locale)
     end
 
     def new
