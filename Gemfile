@@ -59,7 +59,7 @@ gem "nokogiri"
 
 # excel generator
 gem "caxlsx", "~> 4.5.0"
-gem "caxlsx_rails", "~> 0.6.4"
+gem "caxlsx_rails", "~> 0.7.2"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
@@ -68,7 +68,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem "rspec-rails", "~> 7.1"
+  gem "rspec-rails", "~> 8.0"
 end
 
 group :development do
