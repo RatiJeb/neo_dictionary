@@ -52,7 +52,7 @@ gem "dotenv-rails", "~> 3.1"
 gem "image_processing", "~> 2.0"
 
 # pagination
-gem "pagy", "~> 9.3.4"
+gem "pagy", "~> 43.6.1"
 
 # html parser
 gem "nokogiri"
