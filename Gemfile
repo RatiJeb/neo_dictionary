@@ -58,7 +58,7 @@ gem "pagy", "~> 9.3.4"
 gem "nokogiri"
 
 # excel generator
-gem "caxlsx", "~> 4.4.0"
+gem "caxlsx", "~> 4.5.0"
 gem "caxlsx_rails", "~> 0.6.4"
 
 group :development, :test do

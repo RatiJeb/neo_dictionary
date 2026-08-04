@@ -95,7 +95,7 @@ GEM
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
       thor (~> 1.0)
-    caxlsx (4.4.2)
+    caxlsx (4.5.0)
       htmlentities (~> 4.3, >= 4.3.4)
       marcel (~> 1.0)
       nokogiri (~> 1.10, >= 1.10.4)
@@ -411,7 +411,7 @@ DEPENDENCIES
   brakeman
   bullet
   bundle-audit
-  caxlsx (~> 4.4.0)
+  caxlsx (~> 4.5.0)
   caxlsx_rails (~> 0.6.4)
   devise (~> 5.0)
   devise_invitable (~> 2.0)
