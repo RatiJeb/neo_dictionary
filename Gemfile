@@ -59,7 +59,7 @@ gem "nokogiri"
 
 # excel generator
 gem "caxlsx", "~> 4.5.0"
-gem "caxlsx_rails", "~> 0.6.4"
+gem "caxlsx_rails", "~> 0.7.2"
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
